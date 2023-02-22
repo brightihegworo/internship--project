@@ -5,6 +5,7 @@ driver = webdriver.Chrome(executable_path='/Users/brightihegworo/python-selenium
 
 driver.get('https://www.amazon.com/')
 
+
 driver.find_element(By.ID, 'twotabsearchtextbox').send_keys('table')
 
 driver.find_element(By.ID, 'nav-search-submit-button').click()
