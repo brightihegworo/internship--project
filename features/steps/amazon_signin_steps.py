@@ -7,9 +7,9 @@ from behave import given, when, then
    # context.driver.get('https://www.amazon.com/')
 
 
-@when('Click on Returns & Orders button')
-def click_returns_and_orders(context):
-    context.driver.find_element(By.ID, 'nav-orders').click()
+#@when('Click on Returns & Orders button')
+#def click_returns_and_orders(context):
+    #context.driver.find_element(By.ID, 'nav-orders').click()
 
 
 #@then('Verify that the text {expected_result} is shown')
