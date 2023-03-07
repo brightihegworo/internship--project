@@ -1,6 +1,8 @@
 
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.support import expected_conditions as EC
+
 
 
 AMAZON_SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
@@ -9,7 +11,7 @@ HAM_MENU = (By.ID, 'nav-hamburger-menu')
 FOOTER_LINKS = (By.CSS_SELECTOR, "table.navFooterMoreOnAmazon td.navFooterDescItem")
 HEADER_LINKS = (By.CSS_SELECTOR, "#nav-xshop a.nav-a[data-csa-c-type='link']")
 BESTSELLER_BUTTON = (By.XPATH, "//a[@href='/gp/bestsellers/?ref_=nav_em_cs_bestsellers_0_1_1_2']")
-
+SIGN_IN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip a.nav-action-button')
 
 
 @given('Open Amazon page')
@@ -25,6 +27,21 @@ def input_search_word(context, text):
 @when('Click on search button')
 def click_search(context):
     context.driver.find_element(*SEARCH_ICON).click()
+
+
+@when('Click on All button')
+def click_all_button(context):
+    context.driver.find_element(*HAM_MENU).click()
+
+
+@when('Click on Bestseller')
+def click_on_bestseller(context):
+    context.driver.find_element(*BESTSELLER_BUTTON).click()
+
+
+@when('Click Sign In from popup')
+def click_sign(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BTN)).click()
 
 
 @then('Verify hamburger menu icon present')
@@ -53,14 +70,7 @@ def verify_header_link_count(context, expected_amount):
     assert len(header_links) == expected_amount, f'Expected {expected_amount} links but got {len(header_links)}'
 
 
-@when('Click on All button')
-def click_all_button(context):
-    context.driver.find_element(*HAM_MENU).click()
 
-
-@when('Click on Bestseller')
-def click_on_bestseller(context):
-    context.driver.find_element(*BESTSELLER_BUTTON).click()
 
 
 

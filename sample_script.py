@@ -1,10 +1,16 @@
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 # init driver
 driver = webdriver.Chrome()
 driver.maximize_window()
+driver.wait = WebDriverWait(driver, 10)
+
+driver.implicitly_wait(5) # check every 100 ms
 
 # open the url
 driver.get('https://www.google.com/')
@@ -14,7 +20,8 @@ search.clear()
 search.send_keys('Dress')
 
 # wait for 4 sec
-sleep(4)
+#sleep(4)
+driver.wait.until(EC.element_to_be_clickable(By.NAME, 'btnK')) # checks for condition to be met every 500 ms
 
 # click search
 driver.find_element(By.NAME, 'btnK').click()
