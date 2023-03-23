@@ -6,3 +6,4 @@ class SearchResultsPage(Page):
     def verify_search_result(self, expected_text):
         self.verify_text(expected_text, *self.SEARCH_RESULT)
 
+

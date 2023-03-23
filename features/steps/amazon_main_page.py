@@ -17,7 +17,7 @@ SIGN_IN_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip a.nav-action-button')
 @given('Open Amazon page')
 def open_amazon(context):
     #context.driver.get('https://www.amazon.com/')
-    context.app.main_page.open_main()
+    context.app.main_page.open_main_url()
 
 
 @when('Input text {text}')
@@ -63,6 +63,10 @@ def click_ham_menu(context):
     print(context.ham_menu)
     context.ham_menu.click()
 
+
+@when('Click Orders')
+def click_orders(context):
+    context.app.header.click_orders()
 
 
 @then('Verify Sign In popup shown')
