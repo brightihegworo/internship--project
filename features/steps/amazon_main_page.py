@@ -69,12 +69,27 @@ def click_orders(context):
     context.app.header.click_orders()
 
 
+@when('Hover over language options')
+def hover_lang_options(context):
+    context.app.header.hover_lang_options()
+
+
+@when('Hover over new arrivals options')
+def hover_new_arrivals_options(context):
+    context.app.header.hover_new_arrivals_options()
+
+
 @then('Verify Sign In popup shown')
 def verify_signin_popup_visible(context):
     context.driver.wait.until(
         EC.presence_of_element_located(SIGN_IN_BTN),
         message='Signin btn not clickable'
     )
+
+
+@given('Open Amazon product')
+def open_amazon_product(context):
+    context.app.main_page.open_amazon_product()
 
 @then('Verify Sign In popup disappears')
 def verify_signin_popup_not_visible(context):
@@ -89,6 +104,11 @@ def verify_ham_menu_present(context):
     context.ham_menu = context.driver.find_element(*HAM_MENU)
     context.driver.refresh()
     # print(element)
+
+
+@when('Select department by alias {alias}')
+def select_department(context, alias):
+    context.app.header.select_department(alias)
 
 
 @then('Verify that footer has {expected_amount} links')
@@ -111,7 +131,14 @@ def verify_header_link_count(context, expected_amount):
     assert len(header_links) == expected_amount, f'Expected {expected_amount} links but got {len(header_links)}'
 
 
+@then('Verify Spanish options')
+def verify_lang_shown(context):
+    context.app.header.verify_lang_shown()
 
+
+@then('Verify new arrivals options')
+def verify_new_arrivals_options(context):
+    context.app.header.verify_new_arrivals_options()
 
 
 
