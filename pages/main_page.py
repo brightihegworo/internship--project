@@ -1,3 +1,5 @@
+from time import sleep
+
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,12 +16,14 @@ class MainPage(Page):
 
     def close_popup(self):
         self.wait_for_element_click(*self.CLOSE_POPUP)
+        sleep(1)
 
     def click_on_product(self):
         self.wait_for_element_click(*self.PRODUCT)
 
+
     def click_search_icon(self):
-        self.driver.find_element(*self.SEARCH_ICON).click()
+        self.wait_for_element_click(*self.SEARCH_ICON)
 
     def input_text_in_search_bar(self, text):
         self.driver.find_element(*self.SEARCH_BAR).send_keys(text)

@@ -2,14 +2,19 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from app.application import Application
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 def browser_init(context):
     """
     :param context: Behave context
+    :param test_name: scenario.name
     """
-    context.driver = webdriver.Chrome()
+    options = FirefoxOptions()
+    options.headless = True
+    #service = Service('geckodriver')
+    # context.driver = webdriver.Chrome()
     # context.browser = webdriver.Safari()
-    # context.browser = webdriver.Firefox()
+    context.driver = webdriver.Firefox(executable_path="geckodriver", options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
